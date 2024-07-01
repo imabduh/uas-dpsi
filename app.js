@@ -15,6 +15,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("uploads"));
 
+app.get("/", (req, res) => {
+  console.log("Hallo Mabduh");
+});
+
 app.use("/products", productsRouter);
 app.use("/auth", authRouter);
 app.use("/order", orderRouter);
