@@ -32,3 +32,5 @@ app.listen(3001, async () => {
     });
   console.info("Server Berjalan");
 });
+
+module.exports = app;
