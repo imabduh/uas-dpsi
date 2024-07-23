@@ -13,6 +13,14 @@ const authenticate = (req, res, next) => {
     res.status(401).json({ message: "Token is not valid" });
   }
 };
+
+/* membuat sebuah fungsi untuk mengecek role seriap user
+yang telah disesuaikan melalui parameter,
+
+ketika pengguna tidak mempunyai mempunyai atau tidak sesuai role,
+meka akan mengembalkikan pesan forbidden,
+jika berhasil maka proses akan dilanjutkan.
+*/ 
 const authorize = (roles = []) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {

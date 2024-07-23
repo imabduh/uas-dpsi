@@ -4,10 +4,16 @@ const Products = require("../models/products");
 const { authenticate, authorize } = require("../middleware/auth");
 const upload = require("../middleware/upload");
 // Endpoint untuk menambahkan produk baru
+
+/*
+Disini pada bagian authorize(["admin"]) 
+memiliki akses yang dimana pengguna harus memiliki akses sebagai role admin
+ini bertujuan untuk memberikan seperti akses tertinggi untuk dapat memanipulasi data 
+*/
 router.post(
   "/",
   authenticate,
-  authorize(["admin"]),
+  authorize(["admin"]), // sebagai contoh admin saja
   upload.single("img"),
   async (req, res, next) => {
     try {
@@ -20,7 +26,6 @@ router.post(
       res.status(201).json(newProduct);
     } catch (err) {
       console.error(err);
-
       next(err);
     }
   }
